@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  api:
+    build: ./api
+    image: todo_api
+
+  web:
+    build: ./web
+    image: todo_web
+    ports:
+    - "3000:3000"
+    environment:
+    - API_DNS=http://api:8080
