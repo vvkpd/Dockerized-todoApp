@@ -3,6 +3,8 @@ services:
   api:
     build: ./api
     image: todo_api
+    ports:
+    - "8080:8080"
 
   web:
     build: ./web

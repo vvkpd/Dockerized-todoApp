@@ -1,10 +1,12 @@
 package com.todo.todo;
 
+import org.json.JSONArray;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collections;
 
 @Service
 class TodoService {
@@ -14,5 +16,11 @@ class TodoService {
 
     String getAllTodo() throws IOException {
         return new String(Files.readAllBytes(Paths.get(fileName)));
+    }
+
+    void saveTodo(Todo todo) throws IOException {
+        JSONArray todos = new JSONArray(getAllTodo());
+        todos.put(todo);
+        Files.write(Paths.get(fileName), Collections.singleton(todos.toString()));
     }
 }
