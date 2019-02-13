@@ -23,7 +23,7 @@ public class TodoController {
     }
 
     @RequestMapping(value = {"/todo"}, method = RequestMethod.POST)
-    public ResponseEntity<String> saveTodo(@RequestBody Todo todo) throws IOException {
+    public ResponseEntity<String> saveTodo(@RequestBody Object todo) throws IOException {
         todoService.saveTodo(todo);
         return ResponseEntity.created(URI.create("/todo")).build();
     }

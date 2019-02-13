@@ -18,7 +18,7 @@ class TodoService {
         return new String(Files.readAllBytes(Paths.get(fileName)));
     }
 
-    void saveTodo(Todo todo) throws IOException {
+    void saveTodo(Object todo) throws IOException {
         JSONArray todos = new JSONArray(getAllTodo());
         todos.put(todo);
         Files.write(Paths.get(fileName), Collections.singleton(todos.toString()));
