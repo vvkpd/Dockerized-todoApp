@@ -18,6 +18,9 @@ app.get('/', (req, res) => {
 });
 
 app.all('/todo', (req, res) => {
+  const form = "</p><form action='/todo' method='post'> <input name='task' type='text'><input name='done' type='text'>" +
+    "<button> Save </button></form>";
+
   let options = {
     method: req.method,
     body: req.body,
@@ -26,7 +29,12 @@ app.all('/todo', (req, res) => {
   };
 
   request(options, (err, response) => {
-    res.send(response.body);
+    if (req.method === 'GET') {
+      const content = `${form}<br/><br/>${response.body}`;
+      res.send(content);
+      return
+    }
+    res.redirect('/todo');
   })
 });
 
